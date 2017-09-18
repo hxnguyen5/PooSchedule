@@ -1,5 +1,7 @@
 import time
 import RPi.GPIO as GPIO
+from espeak import espeak
+from datetime import datetime
 
 #GPIO setup
 GPIO.setwarnings(False)
@@ -179,4 +181,8 @@ while True:
         Stop()
         print("Type a number from 0-9")
     
-        
+    
+    t = datetime.now().strftime("%k %M")
+    espeak.synth("The time is %s"%t)
+    
+    espeak.synth("Time to go PooPoo")
