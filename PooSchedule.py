@@ -2,6 +2,7 @@ import time
 import RPi.GPIO as GPIO
 from espeak import espeak
 from datetime import datetime
+from subprocess import check_output
 
 #GPIO setup
 GPIO.setwarnings(False)
@@ -141,40 +142,58 @@ while True:
         print("2 is showing")
         Two()
         time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey you need to go poopoo it has been two days already'])
+        time.sleep(0.65)
         print("Type a number from 0-9")
     elif KeyPress == "3":
         print("3 is showing")
         Three()
+        time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey you need to go poopoo it stinks in here'])
         time.sleep(0.65)
         print("Type a number from 0-9")
     elif KeyPress == "4":
         print("4 is showing")
         Four()
         time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey you need to go poopoo your stomach is getting big'])
+        time.sleep(0.65)
         print("Type a number from 0-9")
     elif KeyPress == "5":
         print("5 is showing")
         Five()
+        time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey you need to go poopoo before your belly blows up'])
         time.sleep(0.65)
         print("Type a number from 0-9")
     elif KeyPress == "6":
         print("6 is showing")
         Six()
         time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey you need to go poopoo come on man you are killing me'])
+        time.sleep(0.65)
         print("Type a number from 0-9")
     elif KeyPress == "7":
         print("7 is showing")
         Seven()
+        time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey you need to go poopoo i hope you have a huge toilet at home'])
         time.sleep(0.65)
         print("Type a number from 0-9")
     elif KeyPress == "8":
         print("8 is showing")
         Eight()
         time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey you need to go poopoo what are you waiting for'])
+        time.sleep(0.65)
+        speak = check_output(['espeak', 'Someone to pull your pants down for you'])
+        time.sleep(0.65)
         print("Type a number from 0-9")
     elif KeyPress == "9":
         print("9 is showing")
         Nine()
+        time.sleep(0.65)
+        speak = check_output(['espeak', 'Hey I am serious man go poo already'])
         time.sleep(0.65)
         print("Type a number from 0-9")
     else:
@@ -182,7 +201,4 @@ while True:
         print("Type a number from 0-9")
     
     
-    t = datetime.now().strftime("%k %M")
-    espeak.synth("The time is %s"%t)
-    
-    espeak.synth("Time to go PooPoo")
+   
