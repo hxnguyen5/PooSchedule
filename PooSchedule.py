@@ -120,11 +120,9 @@ def Stop():
     GPIO.output(36, False)#C
     GPIO.output(38, False)#P    
 
-
-print("Type a number from 0-9")
 while True:    
     
-    KeyPress = input()
+    KeyPress = input("Type a number from 0-9:")
     
     if KeyPress == "0":
         print("0 is showing")
