@@ -1,0 +1,12 @@
+# to pull down repository
+git clone https://****
+# to track files
+git status
+# to change various settings like name, email, etc. for pushing
+git config 
+# to add all files to list for commit
+git add .
+# to commit files to the repository
+git commit -m "a message goes here"
+# to push files to repository into master branch
+git push -u origin master
