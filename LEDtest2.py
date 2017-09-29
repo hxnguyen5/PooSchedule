@@ -1,0 +1,210 @@
+import time
+import RPi.GPIO as GPIO
+
+#GPIO setup
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(29, GPIO.OUT)
+GPIO.setup(31, GPIO.OUT)
+GPIO.setup(33, GPIO.OUT)
+GPIO.setup(35, GPIO.OUT)
+GPIO.setup(37, GPIO.OUT)
+GPIO.setup(32, GPIO.OUT)
+GPIO.setup(36, GPIO.OUT)
+GPIO.setup(38, GPIO.OUT)
+
+def ZERO():
+	GPIO.output(29, False)
+	GPIO.output(31, True)
+	GPIO.output(33, True)
+	GPIO.output(35, True)
+	GPIO.output(37, True)
+	GPIO.output(32, True)
+	GPIO.output(36, True)
+	GPIO.output(38, True)
+def ONE():
+	GPIO.output(29, False)
+	GPIO.output(31, False)
+	GPIO.output(33, False)
+	GPIO.output(35, True)
+	GPIO.output(37, False)
+	GPIO.output(32, False)
+	GPIO.output(36, True)
+	GPIO.output(38, True)
+def TWO():
+	GPIO.output(29, True)
+	GPIO.output(31, False)
+	GPIO.output(33, True)
+	GPIO.output(35, True)
+	GPIO.output(37, True)
+	GPIO.output(32, True)
+	GPIO.output(36, False)
+	GPIO.output(38, True)
+def THREE():
+	GPIO.output(29, True)
+	GPIO.output(31, False)
+	GPIO.output(33, True)
+	GPIO.output(35, True)
+	GPIO.output(37, False)
+	GPIO.output(32, True)
+	GPIO.output(36, True)
+	GPIO.output(38, True)
+def FOUR():
+	GPIO.output(29, True)
+	GPIO.output(31, True)
+	GPIO.output(33, False)
+	GPIO.output(35, True)
+	GPIO.output(37, False)
+	GPIO.output(32, False)
+	GPIO.output(36, True)
+	GPIO.output(38, False)
+def FIVE():
+	GPIO.output(29, True)
+	GPIO.output(31, True)
+	GPIO.output(33, True)
+	GPIO.output(35, False)
+	GPIO.output(37, False)
+	GPIO.output(32, True)
+	GPIO.output(36, True)
+	GPIO.output(38, False)
+def SIX():
+	GPIO.output(29, True)
+	GPIO.output(31, True)
+	GPIO.output(33, True)
+	GPIO.output(35, False)
+	GPIO.output(37, True)
+	GPIO.output(32, True)
+	GPIO.output(36, True)
+	GPIO.output(38, True)
+def SEVEN():
+	GPIO.output(29, False)
+	GPIO.output(31, False)
+	GPIO.output(33, True)
+	GPIO.output(35, True)
+	GPIO.output(37, False)
+	GPIO.output(32, False)
+	GPIO.output(36, True)
+	GPIO.output(38, False)
+def EIGHT():
+	GPIO.output(29, True)
+	GPIO.output(31, True)
+	GPIO.output(33, True)
+	GPIO.output(35, True)
+	GPIO.output(37, True)
+	GPIO.output(32, True)
+	GPIO.output(36, True)
+	GPIO.output(38, True)
+def NINE():
+	GPIO.output(29, True)
+	GPIO.output(31, True)
+	GPIO.output(33, True)
+	GPIO.output(35, True)
+	GPIO.output(37, False)
+	GPIO.output(32, True)
+	GPIO.output(36, True)
+	GPIO.output(38, True)
+def STOP():
+	GPIO.output(29, False)
+	GPIO.output(31, False)
+	GPIO.output(33, False)
+	GPIO.output(35, False)
+	GPIO.output(37, False)
+	GPIO.output(32, False)
+	GPIO.output(36, False)
+	GPIO.output(38, False)
+
+while True:
+	nb = raw_input('Type a number from 0-9: ')
+	number = int(nb)
+	if number == 0:
+		print ("0 is showing")
+		ZERO()
+		time.sleep(0.65)
+		print ("Type another number from 0-9 zero")
+		time.sleep(0.65)
+	elif number == 1:
+		print ("1 is showing")
+		ONE()
+		time.sleep(0.65)
+		print ("Type another number from 0-9 one")
+		time.sleep(0.65)
+	elif number == 2:
+		print ("2 is showing")
+		TWO()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey you need to go poo it has been two days already'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 two")
+		time.sleep(0.65)
+	elif number == 3:
+		print ("3 is showing")
+		THREE()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey you need to go poopoo it stinks in here'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 three")
+		time.sleep(0.65)
+	elif number == 4:
+		print ("4 is showing")
+		FOUR()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey you need to go poopoo your stomach is getting big'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 four")
+		time.sleep(0.65)
+	elif number == 5:
+		print ("5 is showing")
+		FIVE()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey you need to go poopoo before your belly blows up'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 five")
+		time.sleep(0.65)
+	elif number == 6:
+		print ("6 is showing")
+		SIX()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey you need to go poopoo come on man you are killing me'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 six")
+		time.sleep(0.65)
+	elif number == 7:
+		print("7 is showing")
+		SEVEN()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey you need to go poopoo I hope you have a huge toilet at home'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 seven")
+		time.sleep(0.65)
+	elif number == 8:
+		print("8 is showing")
+		EIGHT()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey you need to go poopoo what are you waiting for someone to pull your pants down for you'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 eight")
+		time.sleep(0.65)
+	elif number == 9:
+		print ("9 is showing")
+		NINE()
+		time.sleep(0.65)
+		from subprocess import check_output
+		speak = check_output(['espeak', 'Hey I am serious man go poopoo already'])
+		time.sleep(0.65)
+		print ("Type another number from 0-9 nine")
+		time.sleep(0.65)
+	else:
+		STOP()
+		print ("Type another number from 0-9 else")
+
+
+GPIO.cleanup()
+
+#Stop here and try to add
