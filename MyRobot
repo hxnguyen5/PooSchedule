@@ -1,0 +1,95 @@
+# This file use GPIO pins on Raspberry Pi 3 to control four DC motors for robot steering
+# Alternately, the L298N_H-Bridge Module is another way to control the robot because the bridge 
+# allows for backward and forward driving on the same motor.
+
+# Because there is no backward driving of the motor, we will drive only 2 motors at time; back motors
+# are driven when robot moves forward; front motors are driven when robot moves backward; back right 
+# and front left motors are driven when robot turns left; back left and front right motors are driven
+# when robot turns right.
+
+# This program also uses the Raspberry Pi to power the motor.  Relays can be setup to power the motors
+# from external power source.  This setup is preferred because it is more robust as if the robot get stucked
+# the motor will not damage the Pi.
+
+# Decision to move forward, backward or turn depends on inputs from HC-SR04 proximity sensors
+# These devices are ultrasonic distance sensors.
+
+# Import dependencies
+import time
+import RPi.GPIO as GPIO
+
+# GPIO setup
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+
+# Motor Control Pins setup
+# Front Left Control Pin = 7
+GPIO.setup(7, GPIO.OUT)
+# Front Right Control Pin = 11
+GPIO.setup(11, GPIO.OUT)
+# Back Left Control Pin = 13
+GPIO.setup(13, GPIO.OUT)
+# Back Right Control Pin = 15
+GPIO.setup(15, GPIO.OUT)
+
+# HC-SR04 Sensor Control Pins Setup
+# Set up Trigger Pin
+TRIG = 16
+# Set up Echo Pin
+# Do not forget the Voltage Divider; R1 is 1K and R2 is 2K
+ECHO = 18
+print "Distance Measurement in Progress"
+GPIO.setup(TRIG,GPIO.OUT)
+GPIO.setup(ECHO,GPIO.IN)
+
+
+
+# Set up a While Loop; break when ESC key is pressed on Keyboard
+While True: 
+
+  # Ensure Trigger Pin is set to low and give sensor time to settle
+  GPIO.output(TRIG,False)
+  print "Waiting for Sensor to Settle"
+  time.sleep(2)
+  
+  # Move robot forward while waiting for a distance measurement from the sensor
+  GPIO.output(7, False)
+  GPIO.output(11, False)
+  GPIO.output(13, True)
+  GPIO.output(15, True)
+  
+  # Trigger a 10 microseconds pulse
+  GPIO.output(TRIG,True)
+  time.sleep(0.00001)
+  GPIO.output(TRIG,False)
+
+  # Mark time just before return signal is received
+  while GPIO.input(ECHO)==0:
+	  pulse_start = time.time()
+  while GPIO.input(ECHO)==1:
+	  pulse_end = time.time()
+
+  # Calculate time delta
+  pulse_duration = pulse_end - pulse_start
+
+  # Calculate Distance; note that we use 343 m/s for the speed of sound
+  # Also converted to cm/s
+  distance = pulse_duration*17150
+  distance = round(distance,2)
+  print ("Distance", distance, "cm")
+  
+  if distance > 5:
+    GPIO.output(7, False)
+    GPIO.output(11, False)
+    GPIO.output(13, True)
+    GPIO.output(15, True)
+  elif distance < 5:
+    GPIO.output(7, True)
+    GPIO.output(11, True)
+    GPIO.output(13, False)
+    GPIO.output(15, False)
+    
+  if key == ord("q")
+    break
+    
+GPIO.cleanup()
