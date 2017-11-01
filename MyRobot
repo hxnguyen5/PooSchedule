@@ -44,7 +44,7 @@ GPIO.setup(ECHO,GPIO.IN)
 
 
 
-# Set up a While Loop; break when ESC key is pressed on Keyboard
+# Set up a While Loop; break when 'q' key is pressed on Keyboard
 While True: 
 
   # Ensure Trigger Pin is set to low and give sensor time to settle
