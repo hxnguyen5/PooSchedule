@@ -1,0 +1,75 @@
+# H-Bridge L298N connections as followed to control 4 motors (tie together as 2 groups of 2 motors)
+# outputs 1 and 2 control 2 motors on one side, outputs 3 and 4 control the other two motors, flip black/red on the other side
+# Battery + goes to Vcc, Battery - & Pi's GND go to GND
+# and Pi's 5V go to 5V
+# input 1 (EN B), 2(5V), 3(5V) & 4(EN A)
+# input 1 = pin 15, input 2 = pin 13, input 3 = pin 11, input 4 = pin 7
+# note the use of the sensor function
+# note that the sensor works best as 50 ms wait so change "sleep time" to .050 if necessary
+
+import RPi.GPIO as gpio
+import time
+import sys
+import Tkinter as tk
+from Front_Dist_Sensor import distance
+import random
+
+def init():
+	gpio.setmode(gpio.BOARD)
+	gpio.setup(7, gpio.OUT)
+	gpio.setup(11, gpio.OUT)
+	gpio.setup(13, gpio.OUT)
+	gpio.setup(15, gpio.OUT)
+
+def forward(tf):
+	gpio.output(7, False)
+	gpio.output(11, True)
+	gpio.output(13, True)
+	gpio.output(15, False)
+	time.sleep(tf)
+	gpio.cleanup()
+
+def reverse(tf):
+	gpio.output(7, True)
+	gpio.output(11, False)
+	gpio.output(13, False)
+	gpio.output(15, True)
+	time.sleep(tf)
+	gpio.cleanup()
+
+# turn means only 1 side should spin, the other side stays put
+
+def turn_left(tf):
+	gpio.output(7, True)
+	gpio.output(11, True)
+	gpio.output(13, True)
+	gpio.output(15, False)
+	time.sleep(tf)
+	gpio.cleanup()
+
+# False, True, True, True should also work???
+
+def turn_right(tf)
+	gpio.output(7, False)
+	gpio.output(11, True)
+	gpio.output(13, False)
+	gpio.output(15, False)
+	time.sleep(tf)
+	gpio.cleanup()
+
+# pivot means 1 side spins one way and the other side spins the other way
+
+def pivot_left(tf)
+	gpio.output(7, True)
+	gpio.output(11, False)
+	gpio.output(13, True)
+	gpio.output(15, False)
+	time.sleep(tf)
+	gpio.cleanup()
+
+def pivot_right(tf)
+	gpio.output(7, False)
+	gpio.output(11, True)
+	gpio.output(13, False)
+	gpio.output(15, True)
+	time.sleep(tf)
